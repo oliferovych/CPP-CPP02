@@ -6,88 +6,92 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:52:21 by dolifero          #+#    #+#             */
-/*   Updated: 2024/09/15 02:07:22 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:19:21 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 #include <iostream>
 
 int main(void)
 {
-	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
+	Point a(0.0f, 0.0f);
+	Point b(10.0f, 0.0f);
+	Point c(0.0f, 10.0f);
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	Point p[4] = {Point(2.0f, 2.0f), Point(12.0f, 12.0f), Point(0.0f, 0.0f), Point(5.0f, 0.0f)};
 
-	std::cout << b << std::endl;
+	std::cout << "1: Point in the triangle" << std::endl;
+	std::cout << "2: Point outside of the triangle" << std::endl;
+	std::cout << "3: Point equal to the vertex of triangle" << std::endl;
+	std::cout << "4: Point on the edge of the triangle" << std::endl;
+	std::cout << std::endl;
 
-	std::cout << Fixed::max(a, b) << std::endl;
-
-	return 0;
+	for(int i = 0; i < 4; i++)
+	{
+		std::cout << i + 1 << ": " << std::endl;
+		std::cout << "a: " << a.getX()<< "," << a.getY() << std::endl;
+		std::cout << "b: " << b.getX()<< "," << b.getY() << std::endl;
+		std::cout << "c: " << c.getX()<< "," << c.getY() << std::endl;
+		std::cout << "point: " << p[i].getX()<< "," << p[i].getY() << std::endl;
+		bool result = bsp(a, b, c, p[i]);
+		std::cout << "point is in triangle: " << result << std::endl;
+		std::cout << std::endl;
+	}
 }
 
 // int main(void)
 // {
-// 	Fixed a;
-// 	Fixed b(10);
-// 	Fixed c(42.42f);
-// 	Fixed d(b);
+// 	Point a(0.0f, 0.0f);
+// 	Point b(10.0f, 0.0f);
+// 	Point c(0.0f, 10.0f);
 
-// 	a = Fixed(1234.4321f);
-
-// 	std::cout << "a is " << a << std::endl;
-// 	std::cout << "b is " << b << std::endl;
-// 	std::cout << "c is " << c << std::endl;
-// 	std::cout << "d is " << d << std::endl;
+// 	//Point in the triangle
+// 	Point p(2.0f, 2.0f);
+// 	std::cout << "a: " << a.getX()<< "," << a.getY() << std::endl;
+// 	std::cout << "b: " << b.getX()<< "," << b.getY() << std::endl;
+// 	std::cout << "c: " << c.getX()<< "," << c.getY() << std::endl;
 // 	std::cout << std::endl;
-// 	std::cout << "Arithmetics:" << std::endl;
-// 	a = a + b;
-// 	b = b * c;
-// 	c = c / d;
-// 	d = d - a;
-// 	std::cout << "a is " << a << std::endl;
-// 	std::cout << "b is " << b << std::endl;
-// 	std::cout << "c is " << c << std::endl;
-// 	std::cout << "d is " << d << std::endl;
+// 	std::cout << "point p: " << p.getX()<< "," << p.getY() << std::endl;
 // 	std::cout << std::endl;
-// 	std::cout << "Comparison:" << std::endl;
-// 	a = a > b;
-// 	b = b < c;
-// 	c = c == d;
-// 	d = d != a;
-// 	std::cout << "a is " << a << std::endl;
-// 	std::cout << "b is " << b << std::endl;
-// 	std::cout << "c is " << c << std::endl;
-// 	std::cout << "d is " << d << std::endl;
+// 	bool result = bsp(a, b, c, p);
 // 	std::cout << std::endl;
-// 	std::cout << "Incrementing/decrementing:" << std::endl;
-// 	a = 1;
-// 	b = 1;
-// 	c = 1;
-// 	d = 1;
-// 	a--;
-// 	b++;
-// 	++c;
-// 	--d;
-// 	std::cout << "a is " << a << std::endl;
-// 	std::cout << "b is " << b << std::endl;
-// 	std::cout << "c is " << c << std::endl;
-// 	std::cout << "d is " << d << std::endl;
+// 	std::cout << "point is in triangle: " << result << std::endl;
 // 	std::cout << std::endl;
-// 	std::cout << "Min & max" << std::endl;
-// 	std::cout << "a is " << a << std::endl;
-// 	std::cout << "b is " << b << std::endl;
-// 	std::cout << "c is " << c << std::endl;
-// 	std::cout << "d is " << d << std::endl;
-// 	std::cout << "max a & b:" << a.max(a, b) << std::endl;
-// 	std::cout << "min b & c:" << b.min(b, c) << std::endl;
-// 	std::cout << "max c & d:" << c.max(c, d) << std::endl;
-// 	std::cout << "min d & a:" << d.min(d, a) << std::endl;
+// 	//Point outside of the triangle
+// 	Point o(12.0f, 12.0f);
+// 	std::cout << "a: " << a.getX()<< "," << a.getY() << std::endl;
+// 	std::cout << "b: " << b.getX()<< "," << b.getY() << std::endl;
+// 	std::cout << "c: " << c.getX()<< "," << c.getY() << std::endl;
 // 	std::cout << std::endl;
-// 	return 0;
+// 	std::cout << "point o: " << o.getX()<< "," << o.getY() << std::endl;
+// 	std::cout << std::endl;
+// 	bool result = bsp(a, b, c, o);
+// 	std::cout << std::endl;
+// 	std::cout << "point is in triangle: " << result << std::endl;
+// 	std::cout << std::endl;
+// 	//Point equal to the vertex of triangle
+// 	Point v(0.0f, 0.0f);
+// 	std::cout << "a: " << a.getX()<< "," << a.getY() << std::endl;
+// 	std::cout << "b: " << b.getX()<< "," << b.getY() << std::endl;
+// 	std::cout << "c: " << c.getX()<< "," << c.getY() << std::endl;
+// 	std::cout << std::endl;
+// 	std::cout << "point v: " << v.getX()<< "," << v.getY() << std::endl;
+// 	std::cout << std::endl;
+// 	bool result = bsp(a, b, c, v);
+// 	std::cout << std::endl;
+// 	std::cout << "point is in triangle: " << result << std::endl;
+// 	std::cout << std::endl;
+// 	//Point on the edge of the triangle
+// 	Point e(5.0f, 0.0f);
+// 	std::cout << "a: " << a.getX()<< "," << a.getY() << std::endl;
+// 	std::cout << "b: " << b.getX()<< "," << b.getY() << std::endl;
+// 	std::cout << "c: " << c.getX()<< "," << c.getY() << std::endl;
+// 	std::cout << std::endl;
+// 	std::cout << "point e: " << e.getX()<< "," << e.getY() << std::endl;
+// 	std::cout << std::endl;
+// 	bool result = bsp(a, b, c, e);
+// 	std::cout << std::endl;
+// 	std::cout << "point is in triangle: " << result << std::endl;
+// 	std::cout << std::endl;
 // }
