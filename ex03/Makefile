@@ -6,16 +6,16 @@
 #    By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 17:52:30 by dolifero          #+#    #+#              #
-#    Updated: 2024/09/15 01:36:56 by dolifero         ###   ########.fr        #
+#    Updated: 2024/09/17 13:41:25 by dolifero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Fixed3
+NAME		= BSP
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
-SRC_FILES	= Fixed.cpp main.cpp
+SRC_FILES	= Fixed.cpp Point.cpp bsp.cpp main.cpp
 OBJ_FILES	= $(SRC_FILES:.cpp=.o)
 
 all:		$(NAME)
