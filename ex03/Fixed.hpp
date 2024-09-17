@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:52:12 by dolifero          #+#    #+#             */
-/*   Updated: 2024/09/15 01:57:51 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:30:25 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ class Fixed
 		Fixed operator--(void);
 		Fixed operator--(int);
 
-		float operator+(const Fixed &value) const;
-		float operator-(const Fixed &value) const;
-		float operator*(const Fixed &value) const;
-		float operator/(const Fixed &value) const;
+		Fixed operator+(const Fixed &value) const;
+		Fixed operator-(const Fixed &value) const;
+		Fixed operator*(const Fixed &value) const;
+		Fixed operator/(const Fixed &value) const;
 
 		static Fixed &max(const Fixed &a,const Fixed &b);
 		static Fixed &max(Fixed &a,Fixed &b);

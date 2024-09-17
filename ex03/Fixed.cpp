@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:52:15 by dolifero          #+#    #+#             */
-/*   Updated: 2024/09/15 02:00:48 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:32:10 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void Fixed::setRawBits( int const raw )
 
 float Fixed::toFloat( void ) const
 {
-	return((float)this->value / (1 << bits));
+	return((float)this->value / (float)(1 << bits));
 }
 
 int Fixed::toInt( void ) const
@@ -153,24 +153,24 @@ Fixed Fixed::operator--(int)
 
 //Arithmetic operators
 
-float Fixed::operator+(const Fixed &value) const
+Fixed Fixed::operator+(const Fixed &value) const
 {
-	return(toFloat() + value.toFloat());
+	return(this->toFloat() + value.toFloat());
 }
 
-float Fixed::operator-(const Fixed &value) const
+Fixed Fixed::operator-(const Fixed &value) const
 {
-	return(toFloat() - value.toFloat());
+	return(this->toFloat() - value.toFloat());
 }
 
-float Fixed::operator*(const Fixed &value) const
+Fixed Fixed::operator*(const Fixed &value) const
 {
-	return(toFloat() * value.toFloat());
+	return(this->toFloat() * value.toFloat());
 }
 
-float Fixed::operator/(const Fixed &value) const
+Fixed Fixed::operator/(const Fixed &value) const
 {
-	return(toFloat() / value.toFloat());
+	return(this->toFloat() / value.toFloat());
 }
 
 //Min and max functions
