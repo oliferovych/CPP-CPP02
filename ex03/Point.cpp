@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:39:20 by dolifero          #+#    #+#             */
-/*   Updated: 2024/09/17 14:58:35 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:20:08 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ Point::Point(const float x_val, const float y_val) : x(x_val), y(y_val)
 {
 }
 
-Point::Point(const Point &other)
+Point::Point(const Point &other) : x(other.x), y(other.y)
 {
-	*this = other;
 }
 
 Point &Point::operator=(const Point &other)

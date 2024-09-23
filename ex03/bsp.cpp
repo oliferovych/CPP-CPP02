@@ -6,7 +6,7 @@
 /*   By: dolifero <dolifero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:15:19 by dolifero          #+#    #+#             */
-/*   Updated: 2024/09/17 15:04:45 by dolifero         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:21:41 by dolifero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ float triangleArea(Point const &a, Point const &b, Point const &c)
 	return (std::abs(area));
 }
 
-bool bsp(Point const &a, Point const &b, Point const &c, Point const &point)
+bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	float mainArea;
 	float sumSecondaryAreas;
@@ -65,6 +65,8 @@ bool bsp(Point const &a, Point const &b, Point const &c, Point const &point)
 	sumSecondaryAreas = triangleArea(a, b, point);
 	sumSecondaryAreas = sumSecondaryAreas + triangleArea(a, point, c);
 	sumSecondaryAreas = sumSecondaryAreas + triangleArea(point, b, c);
+	// std::cout << "mainArea: " << mainArea << std::endl;
+	// std::cout << "sumSecondaryAreas: " << sumSecondaryAreas << std::endl;
 	if (mainArea == sumSecondaryAreas)
 		return (true);
 	else
